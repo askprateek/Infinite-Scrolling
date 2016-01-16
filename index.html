@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Infinite Scrolling</title>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css | Add links to other css files after next line -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a class="brand-logo center" href='#'>Shinon</a>
+    </nav>
+    <div id="main">
+    <section class='valign-wrapper'>
+      <div class="row valign">
+        <div class="col s12 ">
+          <h3>Digital Artist Prateek</h3>
+        </div>
+      </div>
+    </section>
+    <section class='valign-wrapper'>
+      <div class="row valign">
+        <div class="col s12 center-align">
+          <h3>www.AskPrateek.com</h3>
+        </div>
+      </div>
+    </section>
+    <section class='valign-wrapper'>
+      <div class="row valign">
+        <div class="col s12 center-align">
+          <h3>github.com/askprateek</h3>
+        </div>
+      </div>
+    </section>
+    <section class='valign-wrapper'>
+      <div class="row valign">
+        <div class="col s12 center-align">
+          <h3>Infinite Scrolling Project</h3>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+    <script>
+    var init= document.getElementsByTagName('section');
+    var sections = $('section').length;
+    var visible_section = -1;
+    console.log(init[0].outerHTML);
+    console.log(init[1].outerHTML);
+    console.log(init[2].outerHTML);
+    console.log(init[3].outerHTML);
+    //$("#main").append(init[0].outerHTML);
+    var start=0;
+    var bodyheight = $(window).height();
+    var docheight = $(document).height();
+    $(window).scroll(function(){
+      var top = $(window).scrollTop();
+      var current_section= parseInt(top/bodyheight)%sections;
+      console.log(current_section);
+      if (current_section - visible_section==1){
+        $("#main").append(init[current_section].outerHTML);
+        start=1;
+        visible_section= current_section;
+        if (visible_section==3){
+          visible_section=-1;
+        }
+      }
+    });
+    </script>
+  </body>
+</html>
